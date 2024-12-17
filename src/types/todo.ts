@@ -1,8 +1,9 @@
 export interface UserState {
-    users: any[], 
-    loading: boolean,
-    error: null | string
+    users?: any[], 
+    loading?: boolean,
+    error?: null | string
 }
+
 
 export enum UserActionTypes {
     FETCH_USERS = "FETCH_USERS",

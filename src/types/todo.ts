@@ -1,27 +1,32 @@
-export interface UserState {
-    users?: any[], 
-    loading?: boolean,
-    error?: null | string
+export interface TodoState {
+    todos: any[];
+    loading: boolean;
+    error: string | null;
+    page: number;
+    limit: number;
 }
 
-
-export enum UserActionTypes {
-    FETCH_USERS = "FETCH_USERS",
-    FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS",
-    FETCH_USERS_ERROR = "FETCH_USERS_ERROR"
+export enum TodoActionTypes {
+    FETCH_TODO = "FETCH_TODO",
+    FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS",
+    FETCH_TODO_ERROR = "FETCH_TODO_ERROR",
+    SET_TODO_PAGE = "SET_TODO_PAGE",
 }
 
-interface FetchUsersAction {
-    type: UserActionTypes.FETCH_USERS;
+interface FetchTodoAction {
+    type: TodoActionTypes.FETCH_TODO
 }
-interface FetchUsersSuccessAction {
-    type: UserActionTypes.FETCH_USERS_SUCCESS;
-    payload: any[];
+interface FetchTodoSuccessAction {
+    type: TodoActionTypes.FETCH_TODO_SUCCESS
+    payload: any[]
 }
-interface FetchUsersErrorAction {
-    type: UserActionTypes.FETCH_USERS_ERROR;
-    payload: string;
+interface FetchTodoErrorAction {
+    type: TodoActionTypes.FETCH_TODO_ERROR,
+    payload: string
+}
+interface SetTodoPage {
+    type: TodoActionTypes.SET_TODO_PAGE,
+    payload: number
 }
 
-export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersErrorAction;
-
+export type TodoAction = FetchTodoAction | FetchTodoSuccessAction | FetchTodoErrorAction | SetTodoPage;

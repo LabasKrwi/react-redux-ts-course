@@ -1,12 +1,27 @@
-import React from 'react'
-import { UseSelector } from 'react-redux';
-import { UserState } from '../types/todo';
+import React, { useEffect } from 'react'
 import { useTypesSelector } from '../hooks/useTypesSelector';
+import { useActions } from '../hooks/useAction';
 
 const UserList: React.FC = () => {
     const {users, loading, error} = useTypesSelector( state => state.user)
+    const {fetchUsers} = useActions()
+    useEffect(() => {
+      fetchUsers()
+    }, [])
+
+    if (loading) {
+      return <h1>Идет загрузка</h1>
+    }
+    if (error) {
+      return <h1>{error}</h1>
+    }
+
   return (
-    <div></div>
+    <div>
+        {users.map(user => 
+          <div key={user.id}>{user.name}</div>
+        )}
+    </div>
   )
 }
 
